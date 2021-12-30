@@ -26,38 +26,34 @@ int main()
         framescount[i] = 0;
     }
     int i = 0;
-    while (i < numofpages)//7
+    while (i < numofpages)
     {
         int j = 0, rep = 0;
-        while (j < numofFrames)//3
-        {//1 3 3 0 3 5 6 3 - 3 framess
-            //   2          0 /1   =  (j=1/
-            if (pages[i] == frames[j]) {  //it checks if page is already in one of the frames
+        while (j < numofFrames)
+        {
+            if (pages[i] == frames[j]) {
                 rep = 1;
-                framescount[j] = i + 1; //go to next frames =0+1=1   [3][5]
-                //
+                framescount[j] = i + 1;
             }
-            j++; //next =1
+            j++;
         }
         j = 0;
         cout << endl;
         cout << "\t\t" << pages[i] << " --> ";
         if (rep == 0)
         {
-            //1 3 3 0 3 5 6 3 - 3 framess
-            // 1 3 0 
-        //[1 5 5]  count 
-        //i=0/1/2/
             int victimpage = 0, k = 0;
-            while (k < numofFrames - 1)//2
-            {     //    0/0 -1   0        0/2 - 2   2
-                if (framescount[victimpage] > framescount[k + 1]) //It will choose victim page
-                    victimpage = k + 1;//victimpage=1 - 2   2
-                k++;//k=1/2 - 1 - 1/2   1/2  1/2
+            while (k < numofFrames - 1)
+            {
+                //It will choose victim page
+                if (framescount[victimpage] > framescount[k + 1])
+                    //victimpage
+                    victimpage = k + 1;
+                k++;
             }
-            frames[victimpage] = pages[i];//frames[0]=1-frames[1]=3-frames[2]=0
-            framescount[victimpage] = i + 1;  //Increasing the time [6 5 5]
-            count++;           //it will count the total pages Fault  -----pf=3
+            frames[victimpage] = pages[i];
+            framescount[victimpage] = i + 1;
+            count++;
             while (j < numofFrames)
             {
                 cout << "\t  " << frames[j] << "  ";
